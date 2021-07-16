@@ -3,12 +3,14 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+
 public abstract class Question {
-    private String text;
-    private String documentation;
-    private int difficulty;
-    private int pointScale;
-    private Section section;
+    protected String text;
+    protected String documentation;
+    protected int difficulty;
+    protected int pointScale;
+    protected Section section;
 //    private int correctSum;
 //    private int falseSum;
 
@@ -59,4 +61,8 @@ public abstract class Question {
     public Section getSection() {
         return section;
     }
+
+    public abstract String getInstructions();
+
+    public abstract ArrayList<Answer> getAnswers();
 }
