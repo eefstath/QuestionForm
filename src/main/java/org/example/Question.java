@@ -9,16 +9,17 @@ public abstract class Question {
     protected String text;
     protected String documentation;
     protected int difficulty;
-    protected int pointScale;
+    protected float pointScale;
     protected Section section;
+    protected boolean correctness;
+    protected float points;
 //    private int correctSum;
 //    private int falseSum;
 
-    public Question(String text, String documentation, int difficulty, int pointScale, Section section) {
+    public Question(String text, String documentation, int difficulty, Section section) {
         this.text = text;
         this.documentation = documentation;
         this.difficulty = difficulty;
-        this.pointScale = pointScale;
         this.section = section;
     }
 
@@ -46,11 +47,11 @@ public abstract class Question {
         this.difficulty = difficulty;
     }
 
-    public int getPointScale() {
+    public float getPointScale() {
         return pointScale;
     }
 
-    public void setPointScale(int pointScale) {
+    public void setPointScale(float pointScale) {
         this.pointScale = pointScale;
     }
 
@@ -62,7 +63,31 @@ public abstract class Question {
         return section;
     }
 
+    public void setCorrectness(boolean correctness) {
+        this.correctness = correctness;
+    }
+
+    public boolean getCorrectness() {
+        return correctness;
+    }
+
+    public void setPoints(float points) {
+        this.points = points;
+    }
+
+    public float getPoints() {
+        return points;
+    }
+
     public abstract String getInstructions();
 
-    public abstract ArrayList<Answer> getAnswers();
+    public abstract ArrayList<Answer> getPossibleAnswers();
+
+    public abstract void calculatePointScale();
+
+    public abstract ArrayList<Answer> getCorrectAnswers();
+
+    public abstract float calculatePoints(ArrayList<Answer> chosenAnswers);
+
+
 }

@@ -3,31 +3,42 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Result {
 //    private int id;
-    private int timestamp;
+    private Timestamp startTimestamp;
+    private Timestamp endTimestamp;
     private Test test;
-    private ArrayList<Answer> answers;
+    private ArrayList<ArrayList<Answer>> answers;
     private float grade;
 
     private static final Logger logger = LogManager.getLogger(Result.class);
 
-    public Result(int timestamp, Test test, ArrayList<Answer> chosenAnswers, float grade) {
-        this.timestamp = timestamp;
+    public Result(Timestamp startTimestamp, Timestamp endTimestamp, Test test, ArrayList<ArrayList<Answer>> chosenAnswers, float grade) {
+        this.startTimestamp = startTimestamp;
+        this.endTimestamp = endTimestamp;
         this.test = test;
         this.answers = chosenAnswers;
         this.grade = grade;
         logger.info("A result has been created");
     }
 
-    public int getTimestamp() {
-        return timestamp;
+    public Timestamp getStartTimestamp() {
+        return startTimestamp;
     }
 
-    public void setTimestamp(int timestamp) {
-        this.timestamp = timestamp;
+    public void setStartTimestamp(Timestamp timestamp) {
+        this.startTimestamp = timestamp;
+    }
+
+    public Timestamp getEndTimestamp() {
+        return endTimestamp;
+    }
+
+    public void setEndTimestamp(Timestamp endTimestamp) {
+        this.endTimestamp = endTimestamp;
     }
 
     public Test getTest() {
@@ -38,11 +49,11 @@ public class Result {
         this.test = test;
     }
 
-    public ArrayList<Answer> getAnswers() {
+    public ArrayList<ArrayList<Answer>> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(ArrayList<Answer> answers) {
+    public void setAnswers(ArrayList<ArrayList<Answer>> answers) {
         this.answers = answers;
     }
 

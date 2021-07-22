@@ -8,14 +8,15 @@ import java.util.ArrayList;
 public class Test {
     private String name;
     private ArrayList<Question> questions;
-    private int base;
-
+    private float minPercentage;
+    private float totalScore;
     private static final Logger logger = LogManager.getLogger(Test.class);
 
-    public Test(String name, ArrayList<Question> questions, int base) {
+    public Test(String name, ArrayList<Question> questions, float minPercentage) {
         this.name = name;
         this.questions = questions;
-        this.base = base;
+        this.minPercentage = minPercentage;
+        calculateTotalScore();
         logger.info("A test has been created");
     }
 
@@ -35,11 +36,25 @@ public class Test {
         this.questions = questions;
     }
 
-    public int getBase() {
-        return base;
+    public float getMinPercentage() {
+        return minPercentage;
     }
 
-    public void setBase(int base) {
-        this.base = base;
+    public void setMinPercentage(float minPercentage) {
+        this.minPercentage = minPercentage;
+    }
+
+    public void setTotalScore(float totalScore) {
+        this.totalScore = totalScore;
+    }
+
+    public float getTotalScore() {
+        return totalScore;
+    }
+
+    private void calculateTotalScore() {
+        for (Question question : questions) {
+            this.totalScore += question.getPointScale();
+        }
     }
 }

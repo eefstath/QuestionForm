@@ -6,11 +6,11 @@ import org.apache.logging.log4j.Logger;
 public class Answer {
     private String text;
     private boolean bool;
-    private int points;
+    private float points;
 
     private static final Logger logger = LogManager.getLogger(Answer.class);
 
-    public Answer(String text, boolean bool, int points){
+    public Answer(String text, boolean bool, float points){
         this.text = text;
         this.bool = bool;
         this.points = points;
@@ -33,11 +33,11 @@ public class Answer {
         this.bool = bool;
     }
 
-    public int getPoints() {
+    public float getPoints() {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void setPoints(float points) {
         this.points = points;
     }
 }
