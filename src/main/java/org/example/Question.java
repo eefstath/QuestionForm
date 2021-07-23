@@ -1,7 +1,7 @@
 package org.example;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
@@ -63,10 +63,12 @@ public abstract class Question {
         return section;
     }
 
+    //Sets where the question was answered correctly or not
     public void setCorrectness(boolean correctness) {
         this.correctness = correctness;
     }
 
+    //Gets where the question was answered correctly or not
     public boolean getCorrectness() {
         return correctness;
     }
@@ -88,6 +90,4 @@ public abstract class Question {
     public abstract ArrayList<Answer> getCorrectAnswers();
 
     public abstract float calculatePoints(ArrayList<Answer> chosenAnswers);
-
-
 }

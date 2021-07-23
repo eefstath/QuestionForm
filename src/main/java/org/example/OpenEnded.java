@@ -40,8 +40,7 @@ public class OpenEnded extends Question{
     }
 
     public ArrayList<Answer> getCorrectAnswers() {
-        ArrayList<Answer> correctAnswers = new ArrayList<>(Arrays.asList(this.answer));
-        return correctAnswers;
+        return new ArrayList<>(Arrays.asList(this.answer));
     }
 
     public float calculatePoints(ArrayList<Answer> chosenAnswers) {
@@ -53,12 +52,8 @@ public class OpenEnded extends Question{
             }
         }
 
-        //Set correctness of question to true if points > 0
-        if (points == this.pointScale) {
-            this.correctness = true;
-        } else {
-            this.correctness = false;
-        }
+        //Set correctness of question to true if points = pointsScale
+        this.correctness = points == this.pointScale;
         this.points = points;
         return points;
     }

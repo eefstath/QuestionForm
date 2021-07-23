@@ -53,12 +53,7 @@ public class MultipleChoice extends Question{
                 points += answer.getPoints();
             }
         }
-        if (points == 0) {
-            this.correctness = true;
-
-        } else {
-            this.correctness = false;
-        }
+        this.correctness = points == 0;
         this.points = points;
         return points;
     }

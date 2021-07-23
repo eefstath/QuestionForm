@@ -73,10 +73,9 @@ public class Main
 
         date = new Date();
         startTimestamp = new Timestamp(date.getTime());
-        ArrayList<ArrayList<Answer>> chosenAnswersList = new ArrayList<>();
 
 //        showTest(test);
-        chosenAnswersList = chooseAnswers(test);
+        ArrayList<ArrayList<Answer>> chosenAnswersList = chooseAnswers(test);
 //        overviewTest(test, chosenAnswersList);
         Result result = submit(test, chosenAnswersList);
         viewTestResult(result);
@@ -132,23 +131,23 @@ public class Main
         ArrayList<ArrayList<Answer>> chosenAnswersList = new ArrayList<>();
 
         //first question
-        chosenAnswersList.add(new ArrayList<Answer>(Arrays.asList(
+        chosenAnswersList.add(new ArrayList<>(Arrays.asList(
                                 test.getQuestions().get(0).getPossibleAnswers().get(0),
                                 test.getQuestions().get(0).getPossibleAnswers().get(1),
                                 test.getQuestions().get(0).getPossibleAnswers().get(3))));
 
         //second question
-        chosenAnswersList.add(new ArrayList<Answer>(
+        chosenAnswersList.add(new ArrayList<>(
                 Arrays.asList(new Answer("Information must not be accessed by unauthorized personnel.",true,0))
         ));
 
         //third question
-        chosenAnswersList.add(new ArrayList<Answer>(
+        chosenAnswersList.add(new ArrayList<>(
                 Arrays.asList(new Answer("Information must be accurate, intact, honest and not faulty, corrupted or uninformed",true,0))
         ));
 
         //fourth question
-        chosenAnswersList.add(new ArrayList<Answer>(
+        chosenAnswersList.add(new ArrayList<>(
                 Arrays.asList(test.getQuestions().get(3).getPossibleAnswers().get(2))
         ));
 
@@ -186,8 +185,7 @@ public class Main
             }
             score += points;
         }
-        Result result = new Result(startTimestamp, endTimestamp, test, chosenAnswers, score);
-        return result;
+        return new Result(startTimestamp, endTimestamp, test, chosenAnswers, score);
     }
 
     private static String calculateTime(Timestamp startTimestamp, Timestamp endTimestamp) {
@@ -196,14 +194,12 @@ public class Main
         int hours = seconds / 3600;
         int minutes = (seconds % 3600) / 60;
         seconds = (seconds % 3600) % 60;
-        String timeTaken = hours + " hours, " + minutes + " minutes and " + seconds + " seconds";
-        return timeTaken;
+        return  hours + " hours, " + minutes + " minutes and " + seconds + " seconds";
     }
 
     private static void viewTestResult(Result result) {
         logger.info("Viewing Result of test");
 
-        int count;
         Test test = result.getTest();
         ArrayList<Question> questions = test.getQuestions();
         ArrayList<ArrayList<Answer>> chosenAnswersList = result.getAnswers();
