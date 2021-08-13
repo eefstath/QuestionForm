@@ -5,14 +5,14 @@ import org.apache.logging.log4j.Logger;
 
 public class Answer {
     private String text;
-    private boolean bool;
+    private boolean correctness;
     private float points;
 
     private static final Logger logger = LogManager.getLogger(Answer.class);
 
     public Answer(String text, boolean bool, float points){
         this.text = text;
-        this.bool = bool;
+        this.correctness = bool;
         this.points = points;
         logger.info("An answer has been created");
     }
@@ -26,11 +26,11 @@ public class Answer {
     }
 
     public boolean getBool() {
-        return bool;
+        return correctness;
     }
 
-    public void setBool(boolean bool) {
-        this.bool = bool;
+    public void setBool(boolean correctness) {
+        this.correctness = correctness;
     }
 
     public float getPoints() {

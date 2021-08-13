@@ -4,15 +4,15 @@ package org.example;
 //import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 
+//Class Question is father class to OpenEnded and MultipleChoice classes.
 public abstract class Question {
     protected String text;
     protected String documentation;
     protected int difficulty;
     protected float pointScale;
     protected Section section;
-    protected boolean correctness;
-    protected float points;
 //    private int correctSum;
 //    private int falseSum;
 
@@ -63,31 +63,13 @@ public abstract class Question {
         return section;
     }
 
-    //Sets where the question was answered correctly or not
-    public void setCorrectness(boolean correctness) {
-        this.correctness = correctness;
-    }
-
-    //Gets where the question was answered correctly or not
-    public boolean getCorrectness() {
-        return correctness;
-    }
-
-    public void setPoints(float points) {
-        this.points = points;
-    }
-
-    public float getPoints() {
-        return points;
-    }
-
     public abstract String getInstructions();
 
-    public abstract ArrayList<Answer> getPossibleAnswers();
+    public abstract List<Answer> getPossibleAnswers();
 
     public abstract void calculatePointScale();
 
-    public abstract ArrayList<Answer> getCorrectAnswers();
+    public abstract List<Answer> getCorrectAnswers();
 
-    public abstract float calculatePoints(ArrayList<Answer> chosenAnswers);
+    public abstract float calculatePoints(List<Answer> chosenAnswers);
 }

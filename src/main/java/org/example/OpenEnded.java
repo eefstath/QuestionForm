@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class OpenEnded extends Question{
 
@@ -19,8 +20,8 @@ public class OpenEnded extends Question{
         logger.info("An open-ended Question has been created");
     }
 
-    public ArrayList<Answer> getPossibleAnswers() {
-        return null;
+    public List<Answer> getPossibleAnswers() {
+        return new ArrayList<>();
     }
 
     public void setAnswer(Answer answer) {
@@ -39,11 +40,11 @@ public class OpenEnded extends Question{
         super.pointScale = this.answer.getPoints();
     }
 
-    public ArrayList<Answer> getCorrectAnswers() {
+    public List<Answer> getCorrectAnswers() {
         return new ArrayList<>(Arrays.asList(this.answer));
     }
 
-    public float calculatePoints(ArrayList<Answer> chosenAnswers) {
+    public float calculatePoints(List<Answer> chosenAnswers) {
         float points = 0;
 
         if (chosenAnswers.size() > 0) {
@@ -51,10 +52,6 @@ public class OpenEnded extends Question{
                 points = answer.getPoints();
             }
         }
-
-        //Set correctness of question to true if points = pointsScale
-        this.correctness = points == this.pointScale;
-        this.points = points;
         return points;
     }
 

@@ -4,9 +4,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MultipleChoice extends Question{
-    private ArrayList<Answer> answers;
+    private List<Answer> answers;
     private static final String INSTRUCTIONS = "Chose the correct answer(s).";
     private static final Logger logger = LogManager.getLogger(MultipleChoice.class);
 
@@ -17,11 +18,11 @@ public class MultipleChoice extends Question{
         logger.info("A multiple-choice question has been created");
     }
 
-    public ArrayList<Answer> getPossibleAnswers() {
+    public List<Answer> getPossibleAnswers() {
         return answers;
     }
 
-    public void setAnswers(ArrayList<Answer> answers) {
+    public void setAnswers(List<Answer> answers) {
         this.answers = answers;
     }
 
@@ -35,8 +36,8 @@ public class MultipleChoice extends Question{
         }
     }
 
-    public ArrayList<Answer> getCorrectAnswers() {
-        ArrayList<Answer> correctAnswers = new ArrayList<>();
+    public List<Answer> getCorrectAnswers() {
+        List<Answer> correctAnswers = new ArrayList<>();
         for (Answer answer : this.getPossibleAnswers()) {
             if (answer.getBool()) {
                 correctAnswers.add(answer);
@@ -45,7 +46,7 @@ public class MultipleChoice extends Question{
         return correctAnswers;
     }
 
-    public float calculatePoints(ArrayList<Answer> chosenAnswers) {
+    public float calculatePoints(List<Answer> chosenAnswers) {
         int points = 0;
 
         if (chosenAnswers.size() > 0) {
@@ -53,8 +54,6 @@ public class MultipleChoice extends Question{
                 points += answer.getPoints();
             }
         }
-        this.correctness = points == 0;
-        this.points = points;
         return points;
     }
 }

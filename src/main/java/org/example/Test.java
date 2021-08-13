@@ -4,19 +4,26 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.List;
 
+//Class Test is the test created
 public class Test {
     private String name;
-    private ArrayList<Question> questions;
+    private List<Question> questions;
+    //Minimum percentage needed to pass the test successfully
     private float minPercentage;
+    //Minimum score needed to pass the test successfully
+    private float minScore;
+    //Sum of all question's points
     private float totalScore;
     private static final Logger logger = LogManager.getLogger(Test.class);
 
-    public Test(String name, ArrayList<Question> questions, float minPercentage) {
+    public Test(String name, List<Question> questions, float minPercentage) {
         this.name = name;
         this.questions = questions;
         this.minPercentage = minPercentage;
         calculateTotalScore();
+        calculateMinScore();
         logger.info("A test has been created");
     }
 
@@ -28,11 +35,11 @@ public class Test {
         this.name = name;
     }
 
-    public ArrayList<Question> getQuestions() {
+    public List<Question> getQuestions() {
         return questions;
     }
 
-    public void setQuestions(ArrayList<Question> questions) {
+    public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
 
@@ -44,6 +51,14 @@ public class Test {
         this.minPercentage = minPercentage;
     }
 
+    public float getMinScore() {
+        return minScore;
+    }
+
+    public void setMinScore(float minScore) {
+        this.minScore = minScore;
+    }
+
     public void setTotalScore(float totalScore) {
         this.totalScore = totalScore;
     }
@@ -52,9 +67,15 @@ public class Test {
         return totalScore;
     }
 
+    //Function adds each question's points to calculate total score of test
     private void calculateTotalScore() {
         for (Question question : questions) {
-            this.totalScore += question.getPointScale();
+            totalScore += question.getPointScale();
         }
+    }
+
+    //Function calculates the minimum score by multiplying the minimum percentage to the total score
+    private void calculateMinScore() {
+        minScore = minPercentage * totalScore / 100;
     }
 }
