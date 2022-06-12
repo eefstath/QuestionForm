@@ -3,6 +3,7 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,9 @@ public class Result {
 
     private static final Logger logger = LogManager.getLogger(Result.class);
 
+    public Result(Timestamp startTimestamp, Test test) {
+        this(startTimestamp, startTimestamp, test, new ArrayList<AnsweredQuestion>(), 0);
+    }
     public Result(Timestamp startTimestamp, Timestamp endTimestamp, Test test, List<AnsweredQuestion> answeredQuestionList, float grade) {
         this.startTimestamp = startTimestamp;
         this.endTimestamp = endTimestamp;
@@ -57,8 +61,8 @@ public class Result {
         return answeredQuestionList;
     }
 
-    public void setAnsweredQuestionList(List<AnsweredQuestion> answers) {
-        this.answeredQuestionList = answers;
+    public void setAnsweredQuestionList(List<AnsweredQuestion> answeredQuestionList) {
+        this.answeredQuestionList = answeredQuestionList;
     }
 
     public float getGrade() {
@@ -67,5 +71,11 @@ public class Result {
 
     public void setGrade(float grade) {
         this.grade = grade;
+    }
+
+    public void calculateGrade() {
+        for(AnsweredQuestion answeredQuestion : answeredQuestionList) {
+            grade += answeredQuestion.points;
+        }
     }
 }

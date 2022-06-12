@@ -3,13 +3,12 @@ package org.example;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 //Class Test is the test created
 public class Test {
     private String name;
-    private List<Question> questions;
+    private List<ValuedQuestion> valuedQuestions;
     //Minimum percentage needed to pass the test successfully
     private float minPercentage;
     //Minimum score needed to pass the test successfully
@@ -18,9 +17,9 @@ public class Test {
     private float totalScore;
     private static final Logger logger = LogManager.getLogger(Test.class);
 
-    public Test(String name, List<Question> questions, float minPercentage) {
+    public Test(String name, List<ValuedQuestion> valuedQuestions, float minPercentage) {
         this.name = name;
-        this.questions = questions;
+        this.valuedQuestions = valuedQuestions;
         this.minPercentage = minPercentage;
         calculateTotalScore();
         calculateMinScore();
@@ -35,12 +34,12 @@ public class Test {
         this.name = name;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
+    public List<ValuedQuestion> getValuedQuestions() {
+        return valuedQuestions;
     }
 
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
+    public void setValuedQuestions(List<ValuedQuestion> valuedQuestions) {
+        this.valuedQuestions = valuedQuestions;
     }
 
     public float getMinPercentage() {
@@ -69,7 +68,7 @@ public class Test {
 
     //Function adds each question's points to calculate total score of test
     private void calculateTotalScore() {
-        for (Question question : questions) {
+        for (ValuedQuestion question : valuedQuestions) {
             totalScore += question.getPointScale();
         }
     }

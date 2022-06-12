@@ -1,0 +1,5 @@
+2021-07-14 19:48:26.403 [main] DEBUG org.example.Main - We've just greeted the user!
+2021-07-14 19:48:26.407 [main] INFO  org.example.Main - We've just greeted the user!
+2021-07-14 19:48:26.407 [main] WARN  org.example.Main - We've just greeted the user!
+2021-07-14 19:48:26.407 [main] ERROR org.example.Main - We've just greeted the user!
+2021-07-14 19:48:26.407 [main] FATAL org.example.Main - We've just greeted the user!

@@ -11,10 +11,9 @@ public class MultipleChoice extends Question{
     private static final String INSTRUCTIONS = "Chose the correct answer(s).";
     private static final Logger logger = LogManager.getLogger(MultipleChoice.class);
 
-    public MultipleChoice(String text, ArrayList<Answer> answers,String documentation, int difficulty, Section section) {
-        super(text, documentation, difficulty, section);
+    public MultipleChoice(String text, ArrayList<Answer> answers,String documentation, Section section) {
+        super(text, documentation, section);
         this.answers = answers;
-        calculatePointScale();
         logger.info("A multiple-choice question has been created");
     }
 
@@ -30,30 +29,24 @@ public class MultipleChoice extends Question{
         return INSTRUCTIONS;
     }
 
-    public void calculatePointScale() {
-        for (Answer answer : this.answers) {
-            super.pointScale += answer.getBool()?answer.getPoints():0;
-        }
-    }
-
     public List<Answer> getCorrectAnswers() {
         List<Answer> correctAnswers = new ArrayList<>();
         for (Answer answer : this.getPossibleAnswers()) {
-            if (answer.getBool()) {
+            if (answer.getCorrectness()) {
                 correctAnswers.add(answer);
             }
         }
         return correctAnswers;
     }
 
-    public float calculatePoints(List<Answer> chosenAnswers) {
-        int points = 0;
-
-        if (chosenAnswers.size() > 0) {
-            for (Answer answer : chosenAnswers) {
-                points += answer.getPoints();
-            }
+    //Function that creates a valued multiple choice question by firstly creating a valued answer for each one of its
+    //possible ones and then setting difficulty and the list of valued answers in it.
+    public ValuedQuestion createValuedQuestion(float difficulty, List<Float> values) {
+        List<ValuedAnswer> valuedAnswers = new ArrayList<>();
+        for(int i=0; i<answers.size(); i++) {
+            valuedAnswers.add(answers.get(i).createValuedAnswer(values.get(i)));
         }
-        return points;
+        return new ValuedMultipleChoice(this, valuedAnswers, difficulty);
     }
+
 }

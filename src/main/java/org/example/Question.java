@@ -10,16 +10,11 @@ import java.util.List;
 public abstract class Question {
     protected String text;
     protected String documentation;
-    protected int difficulty;
-    protected float pointScale;
     protected Section section;
-//    private int correctSum;
-//    private int falseSum;
 
-    public Question(String text, String documentation, int difficulty, Section section) {
+    public Question(String text, String documentation, Section section) {
         this.text = text;
         this.documentation = documentation;
-        this.difficulty = difficulty;
         this.section = section;
     }
 
@@ -39,22 +34,6 @@ public abstract class Question {
         this.documentation = documentation;
     }
 
-    public int getDifficulty() {
-        return difficulty;
-    }
-
-    public void setDifficulty(int difficulty) {
-        this.difficulty = difficulty;
-    }
-
-    public float getPointScale() {
-        return pointScale;
-    }
-
-    public void setPointScale(float pointScale) {
-        this.pointScale = pointScale;
-    }
-
     public void setSection(Section section) {
         this.section = section;
     }
@@ -67,9 +46,8 @@ public abstract class Question {
 
     public abstract List<Answer> getPossibleAnswers();
 
-    public abstract void calculatePointScale();
-
     public abstract List<Answer> getCorrectAnswers();
 
-    public abstract float calculatePoints(List<Answer> chosenAnswers);
+
+    public abstract ValuedQuestion createValuedQuestion(float difficulty,List<Float> values);
 }

@@ -6,14 +6,12 @@ import org.apache.logging.log4j.Logger;
 public class Answer {
     private String text;
     private boolean correctness;
-    private float points;
 
     private static final Logger logger = LogManager.getLogger(Answer.class);
 
-    public Answer(String text, boolean bool, float points){
+    public Answer(String text, boolean correctness){
         this.text = text;
-        this.correctness = bool;
-        this.points = points;
+        this.correctness = correctness;
         logger.info("An answer has been created");
     }
 
@@ -25,19 +23,16 @@ public class Answer {
         this.text = text;
     }
 
-    public boolean getBool() {
+    public boolean getCorrectness() {
         return correctness;
     }
 
-    public void setBool(boolean correctness) {
+    public void setCorrectness(boolean correctness) {
         this.correctness = correctness;
     }
 
-    public float getPoints() {
-        return points;
-    }
-
-    public void setPoints(float points) {
-        this.points = points;
+    //Function that creates a valued answer using the points parameter
+    public ValuedAnswer createValuedAnswer(float points){
+        return new ValuedAnswer(this,points);
     }
 }

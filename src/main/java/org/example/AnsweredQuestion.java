@@ -4,41 +4,41 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import java.util.List;
 
-public class AnsweredQuestion{
-    private Question question;
-    private List<Answer> chosenAnswers;
-    private float points;
-    private boolean correctness;
+public abstract class AnsweredQuestion{
+    protected ValuedQuestion valuedQuestion;
+    protected List<ValuedAnswer> valuedChosenAnswers;
+    protected float points;
+    protected boolean correctness;
 
-    private static final Logger logger = LogManager.getLogger(AnsweredQuestion.class);
+    protected static final Logger logger = LogManager.getLogger(AnsweredQuestion.class);
 
 
-    public AnsweredQuestion(Question question, List<Answer> chosenAnswers) {
-        this(question, chosenAnswers,0,false);
+    public AnsweredQuestion(ValuedQuestion valuedQuestion, List<ValuedAnswer> valuedChosenAnswers) {
+        this(valuedQuestion, valuedChosenAnswers,0,false);
     }
 
-    public AnsweredQuestion(Question question, List<Answer> chosenAnswers, float points, boolean correctness) {
-        this.question = question;
-        this.chosenAnswers = chosenAnswers;
+    public AnsweredQuestion(ValuedQuestion valuedQuestion, List<ValuedAnswer> valuedChosenAnswers, float points, boolean correctness) {
+        this.valuedQuestion = valuedQuestion;
+        this.valuedChosenAnswers = valuedChosenAnswers;
         this.points = points;
         this.correctness = correctness;
         logger.info("An answered question instance has been created");
     }
 
-    public Question getQuestion() {
-        return question;
+    public ValuedQuestion getValuedQuestion() {
+        return valuedQuestion;
     }
 
-    public void setQuestion(Question question) {
-        this.question = question;
+    public void setValuedQuestion(ValuedQuestion valuedQuestion) {
+        this.valuedQuestion = valuedQuestion;
     }
 
-    public List<Answer> getChosenAnswers() {
-        return chosenAnswers;
+    public List<ValuedAnswer> getValuedChosenAnswers() {
+        return valuedChosenAnswers;
     }
 
-    public void setChosenAnswers(List<Answer> chosenAnswers) {
-        this.chosenAnswers = chosenAnswers;
+    public void setValuedChosenAnswers(List<ValuedAnswer> valuedChosenAnswers) {
+        this.valuedChosenAnswers = valuedChosenAnswers;
     }
 
     public float getPoints() {
@@ -52,7 +52,10 @@ public class AnsweredQuestion{
     public boolean getCorrectness() {
         return correctness;
     }
+
     public void setCorrectness(boolean correctness) {
         this.correctness = correctness;
     }
+
+    public abstract void calculatePoints();
 }
